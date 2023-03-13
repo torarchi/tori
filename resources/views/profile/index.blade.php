@@ -27,8 +27,8 @@
                 <p>{{ $user->getFirstNameOrUsername() }} еще ничего не опубликовал</p>
             @else
                 @foreach($statuses as $status)
-                    <div class="media d-flex mb-3 border border-gray ">
-                        <div class="center d-flex justify-content-center align-items-center">
+                    <div class="media d-flex mb-3 border-bottom border-gray">
+                        <div class="center d-flex justify-content-center align-items-top">
                             <a class="pull-left"
                                href="{{ route('profile.index', ['username' => $status->user->username ]) }}">
                                 <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
@@ -37,9 +37,13 @@
                             </a>
                         </div>
                         <div class="media-body media-left ms-3">
-                            <h4 class="media-heading"><a
-                                    href="{{ route('profile.index', ['username' => $status->user->username ]) }}">{{ $status->user->getNameOrUsername() }}</a>
+                            <h4 class="media-heading">
+                                <a href="{{ route('profile.index', ['username' => $status->user->username ]) }}"
+                                   style="text-decoration: none; color: black;">
+                                    {{ $status->user->getNameOrUsername() }}
+                                </a>
                             </h4>
+
                             <p>{{ $status->body }}</p>
                             <ul class="list-inline">
                                 <li>{{ $status->created_at->diffForHumans() }}</li>
@@ -55,7 +59,8 @@
             @if(Auth::user()->hasFriendRequestPending($user))
                 <p>{{ $user->getNameOrUsername() }} ещё не принял ваш запрос в друзья</p>
             @elseif(Auth::user()->hasFriendRequestReceived($user))
-                <a href="{{ route('friend.accept', ['username' => $user->username]) }}" class="btn btn-submit btn-green">Принять запрос</a>
+                <a href="{{ route('friend.accept', ['username' => $user->username]) }}"
+                   class="btn btn-submit btn-green">Принять запрос</a>
 
             @elseif(Auth::user()->isFriendWith($user))
                 <p>Вы с {{ $user->getNameOrUsername() }} друзья</p>

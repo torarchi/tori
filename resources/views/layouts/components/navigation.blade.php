@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand" aria-label="Fifth navbar example">
+<nav class="navbar navbar-expand" aria-label="navbar">
     <div class="container-fluid">
         <a class="navbar-brand me-5" href="{{ route('home') }}">Tori</a>
         <form class="d-flex" role="search" action="{{ route('search-results') }}">

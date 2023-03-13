@@ -11,10 +11,5 @@
         </div>
     </section>
 
-    <footer class="text-muted py-5">
-        <div class="container">
-            <p class="mb-1">© Archil Toriya 2023</p>
-        </div>
-    </footer>
 
 @endsection

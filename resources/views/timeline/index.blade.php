@@ -3,7 +3,6 @@
 @section('content')
     <style>
         textarea {
-            height: auto;
             resize: none;
         }
 
@@ -34,19 +33,19 @@
                     <p>Лента новостей пуста</p>
                 @else
                     @foreach($statuses as $status)
-                        <div class="media  d-flex mb-3 border border-gray ">
-                            <div class="center d-flex justify-content-center align-items-center ">
+                        <div class="media  d-flex mb-3 border-bottom border-gray ">
+                            <div class="center d-flex justify-content-center align-items-top ">
                                 <a class="pull-left"
-                                   href="{{ route('profile.index', ['username' => $status->user->username ]) }}">
+                                   href="{{ route('profile.index', ['username' => $status->user->username ]) }}" >
                                     <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
                                          alt="{{ $status->user->getNameOrUsername() }}"
                                          style="width: 100px; height: 100px; padding: 5px">
                                 </a>
                             </div>
 
-                            <div class="media-body ms-3">
+                            <div class="media-body ms-3 ">
                                 <h4 class="media-heading"><a
-                                        href="{{ route('profile.index', ['username' => $status->user->username ]) }}">{{ $status->user->getNameOrUsername() }}</a>
+                                        href="{{ route('profile.index', ['username' => $status->user->username ]) }}" style="text-decoration: none; color: black;" >{{ $status->user->getNameOrUsername() }}</a>
                                 </h4>
                                 <p>{{ $status->body }}</p>
                                 <ul class="list-inline">
@@ -55,7 +54,9 @@
                             </div>
                         </div>
                     @endforeach
-                    {!! $statuses->render() !!}
+                        <div class="d-flex justify-content-center mt-4">
+                            {!! $statuses->render("pagination::bootstrap-4") !!}
+                        </div>
                 @endif
             </div>
         </div>
