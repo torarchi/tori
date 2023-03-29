@@ -47,11 +47,15 @@
                             <ul class="list-inline">
                                 <li>{{ $status->created_at->diffForHumans() }}</li>
                             </ul>
-                            <form action="{{ route('status.remove', ['id' => $status->id ]) }}" METHOD="post">
-                                @csrf
-                                @method('POST')
-                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
-                            </form>
+                            @auth
+                                @if (auth()->user()->id === $user->id)
+                                <form action="{{ route('status.remove', ['id' => $status->id ]) }}" METHOD="post">
+                                    @csrf
+                                    @method('POST')
+                                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                                </form>
+                            @endif
+                            @endauth
                         </div>
                     </div>
                 @endforeach

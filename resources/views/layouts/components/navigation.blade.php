@@ -1,14 +1,17 @@
 <nav class="navbar navbar-expand" aria-label="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand me-5" href="{{ route('home') }}">Tori</a>
-        <form class="d-flex" role="search" action="{{ route('search-results') }}">
-            <div class="input-group">
+        @if(Auth::check())
+            <h3><a class="navbar-brand me-5" href="{{ route('home') }}">Tori</a></h3>
+            <form class="d-flex" role="search" action="{{ route('search-results') }}">
+                <div class="input-group">
                 <span class="input-group-text border-0 bg-white">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3917/3917754.png" width="16" height="16" alt="Поиск">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3917/3917754.png" width="16" height="16"
+                         alt="Поиск">
                 </span>
-                <input class="border-0" type="text" name="query" placeholder="Поиск" aria-label="Поиск">
-            </div>
-        </form>
+                    <input class="border-0" type="text" name="query" placeholder="Поиск" aria-label="Поиск">
+                </div>
+            </form>
+        @endif
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
@@ -23,27 +26,27 @@
                         <a class="nav-link active" aria-current="page"
                            href="{{ route('profile.index', ['username' => Auth::user()->username]) }}">{{ Auth::user()->getNameOrUsername() }}</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('home') }}">Новости</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('friend.index') }}">Друзья</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('profile.edit') }}">Профиль</a>
+                    </li>
+
                 @endif
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('home') }}">Новости</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('friend.index') }}">Друзья</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('profile.edit') }}">Профиль</a>
-                </li>
+
                 @if(Auth::check())
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('signout') }}">Выйти</a>
                     </li>
                 @else
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('signup') }}">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('signin') }}">Авторизация</a>
-                    </li>
+
                 @endif
             </ul>
         </div>

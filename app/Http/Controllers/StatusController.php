@@ -23,6 +23,5 @@ class StatusController extends Controller
         $status = Auth::user()->statuses()->findOrFail($id);
         $status->delete();
         return redirect()->route('home')->with('info', 'Статус успешно удален');
-
     }
 }

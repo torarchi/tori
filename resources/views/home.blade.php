@@ -9,7 +9,13 @@
                 <p class="lead text-muted">Социальная сеть</p>
             </div>
         </div>
-    </section>
 
+
+        <div class="d-grid gap-5 d-sm-flex justify-content-sm-center">
+            <a class="nav-link text-dark btn-lg px-4" href="{{ route('signup') }}">Регистрация</a>
+            <a class="nav-link text-dark btn-lg px-4" href="{{ route('signin') }}">Авторизация</a>
+        </div>
+
+    </section>
 
 @endsection

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h3><a class="d-flex justify-content-center navbar-brand me-5 mb-5" href="{{ route('home') }}">Tori</a></h3>
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <h3>Регистрация</h3>
