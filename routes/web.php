@@ -40,3 +40,4 @@ Route::post('/friends/delete/{username}', [\App\Http\Controllers\FriendControlle
 Route::get('/friends/accept/{username}', [\App\Http\Controllers\FriendController::class, 'getAccept'])->name('friend.accept')->middleware(['auth']);
 
 Route::post('/status', [\App\Http\Controllers\StatusController::class, 'postStatus'])->name('status.post')->middleware(['auth']);
+Route::post('/status/delete/{id}', [\App\Http\Controllers\StatusController::class, 'removeStatus'])->name('status.remove')->middleware(['auth']);

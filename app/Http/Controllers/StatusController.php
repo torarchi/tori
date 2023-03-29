@@ -18,4 +18,11 @@ class StatusController extends Controller
 
         return redirect()->route('home')->with('info','Запись успешно опубликована');
     }
+
+    public function removeStatus(Request $request, $id){
+        $status = Auth::user()->statuses()->findOrFail($id);
+        $status->delete();
+        return redirect()->route('home')->with('info', 'Статус успешно удален');
+
+    }
 }
