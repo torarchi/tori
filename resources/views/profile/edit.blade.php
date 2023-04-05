@@ -28,6 +28,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="username" class="control-label">Никнейм</label>
+                                    <input type="text" name="username" class="form-control" id="username" value="{{ Request::old('username') ?: Auth::user()->username }}">
+                                    @if ($errors->has('username'))
+                                        <span class="help-block">{{ $errors->first('username') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group mt-3 {{ $errors->has('location') ? 'has-error': ' ' }}">
                                 <label for="location" class="control-label">Страна</label>
                                 <input type="text" name="location" class="form-control" id="location" value="{{ Request::old('location') ?: Auth::user()->location }}">

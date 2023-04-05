@@ -36,6 +36,7 @@ class ProfileController extends Controller
         ]);
 
         Auth::user()->update([
+            'username' => $request->input('username'),
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'location' => $request->input('location'),

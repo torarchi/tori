@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class User extends Authenticatable
 {
@@ -85,8 +87,21 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\User', 'friends', 'friends_id', 'user_id');
     }
 
-    public function friends(){
+    public function friendsPage(){
         return $this->friendOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
+    }
+
+    public function friends($perPage = 4){
+        $friends = $this->friendOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $paginator = new LengthAwarePaginator(
+            $friends->forPage($currentPage, $perPage),
+            $friends->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+        return $paginator;
     }
 
     public function friendRequest(){
@@ -123,8 +138,6 @@ class User extends Authenticatable
     public function isFriendWith(User $user){
         return (bool) $this->friends()->where('id', $user->id)->count();
     }
-
-
 
 
 }

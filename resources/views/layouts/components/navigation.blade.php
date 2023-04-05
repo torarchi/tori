@@ -32,11 +32,15 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link active" href="">Группы</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link active" href="{{ route('friend.index') }}">Друзья</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('profile.edit') }}">Профиль</a>
+                        <a class="nav-link active" href="{{ route('profile.edit') }}">Аккаунт</a>
                     </li>
 
                 @endif

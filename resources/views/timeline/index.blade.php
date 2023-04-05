@@ -11,18 +11,19 @@
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-6 pt-3">
-                <form role='form' action="{{ route('status.post') }}" method="post">
+                <form role='form' action="{{ route('status.post') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-2 {{ $errors->has('status') ? 'has-error' : " " }}">
                         <textarea placeholder="Что нового?" name="status" class="form-control" rows="2"></textarea>
                         @if($errors->has('status'))
                             <span class="help-block">
-                            {{ $errors->first('status') }}
-                        </span>
+                                {{ $errors->first('status') }}
+                            </span>
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Опубликовать</button>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
                 </form>
+
                 <hr>
             </div>
         </div>

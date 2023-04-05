@@ -35,9 +35,11 @@ Route::get('/profile/edit', [\App\Http\Controllers\ProfileController::class, 'ge
 Route::post('/profile/edit', [\App\Http\Controllers\ProfileController::class, 'postEdit'])->middleware(['auth']);;
 
 Route::get('/friends', [\App\Http\Controllers\FriendController::class, 'getIndex'])->name('friend.index')->middleware(['auth']);
+Route::get('/friends/{username}', [\App\Http\Controllers\FriendController::class, 'showFriends'])->name('friend.show')->middleware(['auth']);
 Route::get('/friends/add/{username}', [\App\Http\Controllers\FriendController::class, 'getAdd'])->name('friend.add')->middleware(['auth']);
 Route::post('/friends/delete/{username}', [\App\Http\Controllers\FriendController::class, 'postDelete'])->name('friend.delete')->middleware(['auth']);
 Route::get('/friends/accept/{username}', [\App\Http\Controllers\FriendController::class, 'getAccept'])->name('friend.accept')->middleware(['auth']);
 
 Route::post('/status', [\App\Http\Controllers\StatusController::class, 'postStatus'])->name('status.post')->middleware(['auth']);
 Route::post('/status/delete/{id}', [\App\Http\Controllers\StatusController::class, 'removeStatus'])->name('status.remove')->middleware(['auth']);
+
