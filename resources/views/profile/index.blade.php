@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-
     <style>
         .btn-green {
             background-color: green;
@@ -15,6 +14,7 @@
             padding: 5px 10px;
             border-radius: 3px;
         }
+
 
     </style>
     <div class="container">
@@ -116,18 +116,27 @@
 
                         <div class="row">
                             <div class="col-lg-6 d-flex">
-                                @foreach($user->friends() as $user)
-                                    <div class="media d-flex me-1">
-                                        <a class="pull-left"
-                                           href="{{ route('profile.index', ['username' => $user->username]) }}">
-                                            <img class="media-object" alt="{{ $user->getNameOrUsername() }}"
-                                                 src="{{ $user->getAvatarUrl() }}" width="70" height="70">
-                                        </a>
+                                <div class="item-container">
+                                    <div class="d-flex justify-content-center">
+                                        <span class="badge rounded-pill bg-primary fw-bold fs-5 fs-md-4 fs-lg-3">{{ number_format($user->friends()->count()) }}</span>
                                     </div>
-                                @endforeach
+
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-5">
+                        <h5>Поиск</h5>
+                        <div class="col-lg-6">
+                            <form class="d-flex justify-content-center align-items-center mx-auto" role="search" action="{{ route('search-results') }}">
+                                <div class="input-group">
+                                    <label class="visually-hidden" for="search">Search:</label>
+                                    <input class="form-control rounded" id="search" type="text" name="query" placeholder="..." aria-label="Search">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

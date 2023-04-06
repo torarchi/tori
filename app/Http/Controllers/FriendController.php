@@ -20,6 +20,7 @@ class FriendController extends Controller
             ->with('friendsPage', $friendsPage);
     }
 
+
     public function getAdd($username)
     {
         $user = User::where('username', $username)->first();

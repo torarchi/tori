@@ -91,17 +91,9 @@ class User extends Authenticatable
         return $this->friendOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
     }
 
-    public function friends($perPage = 4){
+    public function friends(){
         $friends = $this->friendOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $paginator = new LengthAwarePaginator(
-            $friends->forPage($currentPage, $perPage),
-            $friends->count(),
-            $perPage,
-            $currentPage,
-            ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        );
-        return $paginator;
+        return $friends;
     }
 
     public function friendRequest(){
@@ -112,6 +104,7 @@ class User extends Authenticatable
         return $this->friendOf()->wherePivot('accepted', false)->get();
     }
 
+
     public function hasFriendRequestPending(User $user){
         return (bool) $this->friendRequestPending()->where('id', $user->id)->count();
     }
@@ -119,6 +112,8 @@ class User extends Authenticatable
     public function hasFriendRequestReceived(User $user){
         return (bool) $this->friendRequest()->where('id', $user->id)->count();
     }
+
+
 
     public function addFriend(User $user){
         $this->friendOf()->attach($user->id);

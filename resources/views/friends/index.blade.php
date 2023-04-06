@@ -19,17 +19,30 @@
             border-radius: 5px;
         }
 
-
         button.active {
             background-color: #4CAF50;
             color: white;
         }
 
         .main {
-            display: flex;
             margin-top: 25px;
         }
 
+        .col-lg-12 {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 768px) {
+            .col-lg-12 {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .col-lg-12 {
+                width: 33.33%;
+            }
+        }
 
     </style>
 
@@ -64,8 +77,6 @@
         </div>
     </div>
 
-
-
     <script>
         $(document).ready(function() {
 
@@ -92,8 +103,5 @@
             });
         });
     </script>
-
-
-
 
 @endsection

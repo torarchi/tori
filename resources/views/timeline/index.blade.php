@@ -9,6 +9,7 @@
     </style>
 
     <div class="container">
+
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-6 pt-3">
                 <form role='form' action="{{ route('status.post') }}" method="post" enctype="multipart/form-data">
@@ -27,6 +28,7 @@
                 <hr>
             </div>
         </div>
+
 
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-6">
@@ -56,7 +58,7 @@
                         </div>
                     @endforeach
                         <div class="d-flex justify-content-center mt-4">
-                            {!! $statuses->render("pagination::bootstrap-4") !!}
+                            {!! $statuses->render("pagination::bootstrap-4", ['always_show' => true, 'page' => $statuses->currentPage()]) !!}
                         </div>
                 @endif
             </div>
