@@ -42,7 +42,7 @@
                                    href="{{ route('profile.index', ['username' => $status->user->username ]) }}" >
                                     <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
                                          alt="{{ $status->user->getNameOrUsername() }}"
-                                         style="width: 100px; height: 100px; padding: 5px">
+                                         style="width: 80px; height: 80px; padding: 5px; border-radius: 50px">
                                 </a>
                             </div>
 

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StatusController extends Controller
 {
+
+
     public function postStatus(Request $request){
         $this->validate($request, [
             'status' => 'required|max:1000',

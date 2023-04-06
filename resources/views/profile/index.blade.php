@@ -22,10 +22,13 @@
             <div class="media d-flex justify-content-between mb-3">
                 <div class="center d-flex justify-content-center align-items-center">
                     <a class="pull-left" href="{{ route('profile.index', ['username' => $user->username]) }}">
-                        <img class="media-object" alt="{{ $user->getNameOrUsername() }}" src="{{ $user->getAvatarUrl() }}" width="100" height="100">
+                        <img class="media-object" alt="{{ $user->getNameOrUsername() }}"
+                             src="{{ $user->getAvatarUrl() }}" width="100" height="100">
                     </a>
                     <div class="media-left ms-3">
-                        <h3 class="media-heading"><a href="{{ route('profile.index', ['username' => $user->username]) }}" style="text-decoration: none; color: black;">{{ $user->getNameOrUsername() }}</a></h3>
+                        <h3 class="media-heading"><a
+                                href="{{ route('profile.index', ['username' => $user->username]) }}"
+                                style="text-decoration: none; color: black;">{{ $user->getNameOrUsername() }}</a></h3>
                         @if($user->location)
                             <p>{{ $user->location }}</p>
                         @endif
@@ -76,7 +79,7 @@
                                    href="{{ route('profile.index', ['username' => $status->user->username ]) }}">
                                     <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
                                          alt="{{ $status->user->getNameOrUsername() }}"
-                                         style="width: 80px; height: 80px; padding: 5px">
+                                         style="width: 75px; height: 75px; padding: 5px; border-radius: 40px">
                                 </a>
                             </div>
                             <div class="media-body media-left ms-3">
@@ -104,7 +107,6 @@
                         </div>
                     @endforeach
                 @endif
-
             </div>
 
             <div class="col-lg-5">
@@ -113,35 +115,52 @@
                         <div class="col-lg-6">
                             <h5>Друзья</h5>
                         </div>
-
-                        <div class="row">
-                            <div class="col-lg-6 d-flex">
-                                <div class="item-container">
-                                    <div class="d-flex justify-content-center">
-                                        <span class="badge rounded-pill bg-primary fw-bold fs-5 fs-md-4 fs-lg-3">{{ number_format($user->friends()->count()) }}</span>
-                                    </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 d-flex">
+                            <div class="item-container">
+                                <div class="d-flex justify-content-center">
+                                    <span
+                                        class="badge rounded-pill bg-primary fw-bold fs-5 fs-md-4 fs-lg-3">{{ number_format($user->friends()->count()) }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <h5>Поиск</h5>
-                        <div class="col-lg-6">
-                            <form class="d-flex justify-content-center align-items-center mx-auto" role="search" action="{{ route('search-results') }}">
-                                <div class="input-group">
-                                    <label class="visually-hidden" for="search">Search:</label>
-                                    <input class="form-control rounded" id="search" type="text" name="query" placeholder="..." aria-label="Search">
-                                </div>
-                            </form>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <h5>Посты</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 d-flex">
+                        <div class="d-flex justify-content-center">
+                            <span
+                                class="badge rounded-pill bg-primary fw-bold fs-5 fs-md-4 fs-lg-3">{{ number_format($statuses->count()) }}</span>
                         </div>
                     </div>
-
                 </div>
+
+
+                <div class="row mt-5">
+                    <h5>Поиск</h5>
+                    <div class="col-lg-6">
+                        <form class="d-flex justify-content-center align-items-center mx-auto" role="search"
+                              action="{{ route('search-results') }}">
+                            <div class="input-group">
+                                <label class="visually-hidden" for="search">Search:</label>
+                                <input class="form-control rounded" id="search" type="text" name="query"
+                                       placeholder="..." aria-label="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
 
             </div>
         </div>
-
         @endsection
     </div>
 
