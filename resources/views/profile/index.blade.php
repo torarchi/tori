@@ -160,7 +160,7 @@
                                           METHOD="post">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                                        <button type="submit" class="btn btn-outline-dark rounded-circle lh-1">X</button>
                                     </form>
                                 @endif
                             @endauth

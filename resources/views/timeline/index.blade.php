@@ -20,7 +20,7 @@
                             </span>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-primary">Опубликовать</button>
+                    <button type="submit" class="btn btn-dark">Опубликовать</button>
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
                 </form>
 
