@@ -18,7 +18,7 @@
             <h3><a class="navbar-brand me-5" href="{{ route('home') }}">Tori</a></h3>
         @endif
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
+        <button class="navbar-toggler{{ Auth::check() ? '' : ' d-none' }}" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05"
                 aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="">Группы</a>
+                        <a class="nav-link active" href="{{ route('home') }}">Посты</a>
                     </li>
 
                     <li class="nav-item">
@@ -48,17 +48,13 @@
                         <a class="nav-link active" href="{{ route('profile.edit') }}">Аккаунт</a>
                     </li>
 
-                @endif
-
-                @if(Auth::check())
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('signout') }}">Выйти</a>
                     </li>
-                @else
-
                 @endif
             </ul>
         </div>
     </div>
 </nav>
+
 

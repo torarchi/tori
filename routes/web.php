@@ -42,24 +42,3 @@ Route::get('/friends/accept/{username}', [\App\Http\Controllers\FriendController
 Route::post('/status', [\App\Http\Controllers\StatusController::class, 'postStatus'])->name('status.post')->middleware(['auth']);
 Route::post('/status/delete/{id}', [\App\Http\Controllers\StatusController::class, 'removeStatus'])->name('status.remove')->middleware(['auth']);
 
-
-Route::middleware(['auth'])->group(function () {
-
-
-    Route::get('/groups', [App\Http\Controllers\GroupController::class, 'index'])->name('groups.index');
-    Route::get('/groups/create', [App\Http\Controllers\GroupController::class, 'create'])->name('groups.create');
-    Route::post('/groups', [App\Http\Controllers\GroupController::class, 'store'])->name('groups.store');
-    Route::get('/groups/{groups}', [App\Http\Controllers\GroupController::class, 'show'])->name('groups.show');
-    Route::get('/groups/{groups}/edit', [App\Http\Controllers\GroupController::class, 'edit'])->name('groups.edit');
-    Route::put('/groups/{groups}', [App\Http\Controllers\GroupController::class, 'update'])->name('groups.update');
-    Route::delete('/groups/{groups}', [App\Http\Controllers\GroupController::class, 'destroy'])->name('groups.destroy');
-
-    Route::post('/groups/{groups}/join', [App\Http\Controllers\GroupUserController::class, 'join'])->name('groups.join');
-    Route::post('/groups/{groups}/leave', [App\Http\Controllers\GroupUserController::class, 'leave'])->name('groups.leave');
-
-    Route::post('/groups/{groups}/status', [App\Http\Controllers\GroupStatusController::class, 'store'])->name('groups.status.store');
-    Route::get('/groups/{groups}/status/{status}/edit', [App\Http\Controllers\GroupStatusController::class, 'edit'])->name('groups.status.edit');
-    Route::put('/groups/{groups}/status/{status}', [App\Http\Controllers\GroupStatusController::class, 'update'])->name('groups.status.update');
-    Route::delete('/groups/{groups}/status/{status}', [App\Http\Controllers\GroupStatusController::class, 'destroy'])->name('groups.status.destroy');
-
-});

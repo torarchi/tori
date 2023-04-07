@@ -13,7 +13,7 @@ class StatusController extends Controller
 
     public function postStatus(Request $request){
         $this->validate($request, [
-            'status' => 'required|max:1000',
+            'status' => 'required|max:250',
         ]);
 
         Auth::user()->statuses()->create([

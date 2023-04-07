@@ -16,11 +16,14 @@ class ProfileController extends Controller
             abort(404);
         }
 
-        $statuses = $user->statuses()->orderBy('created_at', 'desc')->get();
+        $statuses = $user->statuses()->orderBy('created_at', 'desc')->paginate(5);
+        $totalStatusesCount = $statuses->total();
+
 
         return view('profile.index')
             ->with('user', $user)
             ->with('statuses', $statuses)
+            ->with('totalStatusesCount', $totalStatusesCount)
             ->with('authUserIsFriend', Auth::user()->isFriendWith($user));
     }
 
