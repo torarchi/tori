@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('home') }}">Группы</a>
+                        <a class="nav-link active" href="{{ route('groups.index') }}">Группы</a>
                     </li>
 
                     <li class="nav-item">

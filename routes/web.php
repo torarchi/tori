@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\GroupStatusesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,4 +42,16 @@ Route::get('/friends/accept/{username}', [\App\Http\Controllers\FriendController
 
 Route::post('/status', [\App\Http\Controllers\StatusController::class, 'postStatus'])->name('status.post')->middleware(['auth']);
 Route::post('/status/delete/{id}', [\App\Http\Controllers\StatusController::class, 'removeStatus'])->name('status.remove')->middleware(['auth']);
+
+Route::get('/groups', [\App\Http\Controllers\GroupsController::class, 'index'])->name('groups.index')->middleware(['auth']);
+Route::get('/groups/create', [\App\Http\Controllers\GroupsController::class, 'create'])->name('groups.create')->middleware(['auth']);
+Route::post('/groups', [\App\Http\Controllers\GroupsController::class, 'store'])->name('groups.store')->middleware(['auth']);
+Route::post('/groups/{group}/statuses', [\App\Http\Controllers\GroupsController::class, 'stores'])->name('group_statuses.stores')->middleware(['auth']);
+Route::get('/groups/{group}', [\App\Http\Controllers\GroupsController::class, 'show'])->name('groups.show')->middleware(['auth']);
+Route::put('/groups/{group}', [\App\Http\Controllers\GroupsController::class, 'update'])->name('groups.update')->middleware(['auth']);
+Route::delete('/groups/{group}', [\App\Http\Controllers\GroupsController::class, 'destroy'])->name('groups.destroy')->middleware(['auth']);
+
+Route::post('groups/{group}/join', [\App\Http\Controllers\GroupsController::class, 'join'])->name('groups.join')->middleware(['auth']);
+Route::delete('groups/{group}/leave', [\App\Http\Controllers\GroupsController::class, 'leave'])->name('groups.leave')->middleware(['auth']);
+
 

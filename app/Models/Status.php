@@ -11,6 +11,7 @@ class Status extends Model
 
     protected $table = 'statuses';
 
+
     protected $fillable = [
         'body'
     ];
