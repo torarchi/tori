@@ -33,6 +33,7 @@ class ProfileController extends Controller
 
     public function postEdit(Request $request){
         $this->validate($request, [
+            'username' => 'alpha|max:25|unique:users,username,' . Auth::id(),
             'first_name' => 'alpha|max:50',
             'last_name' => 'alpha|max:50',
             'location' => 'max:20',

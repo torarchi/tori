@@ -13,7 +13,7 @@ class GroupsController extends Controller
 {
     public function index()
     {
-        $groups = Group::all();
+        $groups = Group::paginate(10);
 
         return view('groups.index', compact('groups'));
     }
@@ -84,7 +84,7 @@ class GroupsController extends Controller
             return redirect()->route('groups.index')->with('error', 'You do not have permission to view this group.');
         }
 
-        $statuses = $group->statuses()->latest()->get();
+        $statuses = $group->statuses()->latest()->paginate(10);
 
         return view('groups.show', compact('group', 'statuses'));
     }
