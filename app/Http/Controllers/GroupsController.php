@@ -20,6 +20,10 @@ class GroupsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:10',
+        ]);
+
         $group = new Group;
         $group->name = $request->name;
         $group->creator_id = auth()->id();
@@ -93,7 +97,7 @@ class GroupsController extends Controller
     public function update(Request $request, Group $group)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:25',
             'description' => 'required',
         ]);
 

@@ -133,16 +133,15 @@
                 <p>{{ $user->getFirstNameOrUsername() }} еще ничего не опубликовал</p>
             @else
                 @foreach($statuses as $status)
-                    <div class="media d-flex mb-3 border-bottom border-gray">
-                        <div class="center d-flex justify-content-center align-items-top">
-                            <a class="pull-left"
-                               href="{{ route('profile.index', ['username' => $status->user->username ]) }}">
-                                <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
-                                     alt="{{ $status->user->getNameOrUsername() }}"
-                                     style="width: 75px; height: 75px; padding: 5px; border-radius: 40px">
-                            </a>
-                        </div>
-                        <div class="media-body media-left ms-3">
+                    <div class="media d-flex ms-2">
+                        <a class="pull-left"
+                           href="{{ route('profile.index', ['username' => $status->user->username ]) }}">
+                            <img class="media-object" src="{{ $status->user->getAvatarUrl() }}"
+                                 alt="{{ $status->user->getNameOrUsername() }}"
+                                 style="width: 75px; height: 75px; padding: 5px; border-radius: 40px">
+                        </a>
+                    </div>
+                        <div class="media-body ms-3 border-bottom border-gray">
                             <h4 class="media-heading">
                                 <a href="{{ route('profile.index', ['username' => $status->user->username ]) }}"
                                    style="text-decoration: none; color: black;">
@@ -152,7 +151,7 @@
                             <ul class="list-inline">
                                 <li>{{ $status->created_at->diffForHumans() }}</li>
                             </ul>
-                            <p>{{ $status->body }}</p>
+                            <p class="mb-2" style="word-wrap: break-word;">{{ $status->body }}</p>
 
                             @auth
                                 @if (auth()->user()->id === $user->id)
@@ -160,12 +159,13 @@
                                           METHOD="post">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="btn btn-outline-dark rounded-circle lh-1">X</button>
+                                        <button type="submit" class="btn btn-outline-dark rounded-circle lh-1">X
+                                        </button>
                                     </form>
                                 @endif
                             @endauth
                         </div>
-                    </div>
+
                 @endforeach
                 <div class="d-flex justify-content-center">
                     {!! $statuses->render("pagination::bootstrap-4", ['always_show' => true, 'page' => $statuses->currentPage()]) !!}

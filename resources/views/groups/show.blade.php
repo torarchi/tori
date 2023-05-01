@@ -64,9 +64,9 @@
             font-size: 12px;
         }
     </style>
-    <h1>{{ $group->name }}</h1>
+    <h1 style="color: dodgerblue">{{ $group->name }}</h1>
 
-    <h2>Участники: <i>{{ $group->users->count() }}</i> </h2>
+    <h5>Участники: <i style="color: indigo">{{ $group->users->count() }}</i> </h5>
 
     @if ($group->creator_id == auth()->id())
         <div class="status-form">
@@ -80,17 +80,18 @@
 
     <div class="statuses">
         <h2>Посты</h2>
-        @if ($group->statuses->count() > 0)
-            @foreach ($group->statuses as $status)
+        @if ($statuses->count() > 0)
+            @foreach ($statuses as $status)
                 <div class="status">
-                    <p>{{ $status->body }}</p>
+                    <p class="mb-2" style="word-wrap: break-word;">{{ $status->body }}</p>
                 </div>
             @endforeach
-                <div class="d-flex justify-content-center">
-                    {!! $statuses->links("pagination::bootstrap-4", ['always_show' => true, 'page' => $statuses->currentPage()]) !!}
-                </div>
+            <div class="d-flex justify-content-center">
+                {{ $statuses->links("pagination::bootstrap-4") }}
+            </div>
         @else
             <p>Нет статусов.</p>
         @endif
+
     </div>
 @endsection

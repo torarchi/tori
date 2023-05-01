@@ -16,6 +16,7 @@ class GroupStatusesController extends Controller
             'body' => 'required',
         ]);
 
+        $statuses = $group->statuses()->paginate(10);
         $status = new GroupStatus;
         $status->body = $request->body;
         $status->user_id = auth()->id();
@@ -23,6 +24,6 @@ class GroupStatusesController extends Controller
 
         $group->statuses()->save($status);
 
-        return redirect()->route('group_statuses.stores', $group);
+        return redirect()->route('group_statuses.stores', ['group' => $group, 'statuses' => $statuses]);
     }
 }
