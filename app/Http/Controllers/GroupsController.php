@@ -22,10 +22,12 @@ class GroupsController extends Controller
     {
         $request->validate([
             'name' => 'required|max:10',
+            'image' => 'required|url',
         ]);
 
         $group = new Group;
         $group->name = $request->name;
+        $group->image = $request->image;
         $group->creator_id = auth()->id();
         $group->save();
 
@@ -33,6 +35,7 @@ class GroupsController extends Controller
 
         return redirect()->route('groups.index');
     }
+
 
     public function stores(Request $request, Group $group)
     {

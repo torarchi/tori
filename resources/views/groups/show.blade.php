@@ -63,9 +63,22 @@
             color: #999;
             font-size: 12px;
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Set a max-width for the container to control the image size */
+        .image-container {
+            max-width: 250px;
+        }
+
     </style>
     <h1 style="color: dodgerblue">{{ $group->name }}</h1>
 
+    <div class="image-container">
+        <img src="{{ $group->image }}" alt="group image">
+    </div>
     <h5>Участники: <i style="color: indigo">{{ $group->users->count() }}</i> </h5>
 
     @if ($group->creator_id == auth()->id())
