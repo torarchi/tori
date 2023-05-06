@@ -3,17 +3,29 @@
 @section('content')
     <h3>Ваш результат "{{ Request::input('query') }}"</h3>
 
-    @if (!$users->count())
+    @if (!$users->count() && !$groups->count())
         <h2>Нет результатов</h2>
     @else
-    <div class="row">
-        <div class="col-lg-12">
+        @if ($users->count())
+            <h4>Пользователи:</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    @foreach($users as $user)
+                        @include('user.components.userblock')
+                    @endforeach
+                </div>
+            </div>
+        @endif
 
-            @foreach($users as $user)
-                @include('user.components.userblock')
-            @endforeach
-
-        </div>
-    </div>
+        @if ($groups->count())
+            <h4>Группы:</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    @foreach($groups as $group)
+                        @include('user.components.groupblock')
+                    @endforeach
+                </div>
+            </div>
+        @endif
     @endif
 @endsection

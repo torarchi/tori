@@ -55,9 +55,6 @@
         }
 
         .status2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border: none;
             border-radius: 5px;
             padding: 10px;
