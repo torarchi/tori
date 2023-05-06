@@ -29,7 +29,7 @@
                                         <img src="{{ $group->image }}" alt="group image" style="border-radius: 15px">
                                     </div>
                                     <div class="info-group">
-                                        <a href="{{ route('groups.show', $group) }}">{{ $group->name }}</a>
+                                        <a href="{{ route('groups.show', $group) }}" style="text-decoration: none; font-size: 18px">{{ $group->name }}</a>
                                         <div class="info-subs">
                                             <i>Участники:{{ $group->users->count() }}</i>
                                         </div>

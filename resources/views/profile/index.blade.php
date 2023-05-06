@@ -23,7 +23,7 @@
                 <div class="center d-flex justify-content-center align-items-center">
                     <a class="pull-left" href="{{ route('profile.index', ['username' => $user->username]) }}">
                         <img class="media-object" alt="{{ $user->getNameOrUsername() }}"
-                             src="{{ $user->getAvatarUrl() }}" width="100" height="100">
+                             src="{{ $user->getAvatarUrl() }}" style="border-radius: 20px" width="100" height="100">
                     </a>
                     <div class="media-left ms-3">
                         <h3 class="media-heading"><a
@@ -149,7 +149,7 @@
                                           METHOD="post">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="btn btn-outline-dark rounded-circle lh-1">X
+                                        <button type="submit" class="btn btn-outline-dark lh-1">Удалить
                                         </button>
                                     </form>
                                 @endif

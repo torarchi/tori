@@ -53,5 +53,5 @@ Route::delete('/groups/{group}', [\App\Http\Controllers\GroupsController::class,
 
 Route::post('groups/{group}/join', [\App\Http\Controllers\GroupsController::class, 'join'])->name('groups.join')->middleware(['auth']);
 Route::delete('groups/{group}/leave', [\App\Http\Controllers\GroupsController::class, 'leave'])->name('groups.leave')->middleware(['auth']);
-
+Route::post('/groups/{group_id}/delete/{id}', [\App\Http\Controllers\GroupsController::class, 'removes'])->name('group.remove')->middleware(['auth']);
 

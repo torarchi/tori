@@ -112,6 +112,16 @@
                     </div>
                     <div class="second d-flex justify-content-end align-items-center">
                         <ul style="color: dodgerblue">
+                            @auth
+                                @if (auth()->user()->id === $status->user_id)
+
+                                    <form action="{{ route('group.remove', ['group_id' => $group->id, 'id' => $status->id ]) }}" method="POST">
+                                        @csrf
+                                        @method('post')
+                                        <button type="submit" class="btn btn-outline-dark lh-1">Удалить</button>
+                                    </form>
+                                @endif
+                            @endauth
                             <li>{{ $status->created_at->diffForHumans() }}</li>
                         </ul>
                     </div>

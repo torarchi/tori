@@ -59,19 +59,33 @@ class GroupsController extends Controller
         $group_status->group_id = $group->id;
         $group_status->save();
 
-        return redirect()->route('groups.show', $group)->with('success', 'Group status created successfully.');
+        return redirect()->route('groups.show', $group)->with('success', 'Запись была успешно создана');
     }
+
+    public function removes($group_id, $id)
+    {
+        $groupStatus = GroupStatus::findOrFail($id);
+
+        if (auth()->user()->id !== $groupStatus->user_id) {
+            abort(403);
+        }
+
+        $groupStatus->delete();
+
+        return redirect()->route('groups.show', $group_id)->with('info', 'Запись была успешно удалена');
+    }
+
 
     public function join(Group $group)
     {
         $user = Auth::user();
         if ($group->members && $group->members->contains($user)) {
-            return redirect()->route('groups.show', $group)->with('error', 'You are already a member of this group.');
+            return redirect()->route('groups.show', $group)->with('error', 'Вы уже являетесь участником группы');
         }
 
         $group->members()->attach($user);
 
-        return redirect()->route('groups.show', $group)->with('success', 'You have joined the group!');
+        return redirect()->route('groups.show', $group)->with('success', 'Вы успешно присоединились к группе');
     }
 
     public function leave(Group $group)
@@ -98,7 +112,7 @@ class GroupsController extends Controller
         $user = auth()->user();
 
         if (!$user || !$group->users->contains($user)) {
-            return redirect()->route('groups.index')->with('error', 'You do not have permission to view this group.');
+            return redirect()->route('groups.index')->with('error', 'У вас нет доступа к просмотру содержимого группы');
         }
 
         $statuses = $group->statuses()->latest()->paginate(10);
@@ -119,6 +133,6 @@ class GroupsController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('groups.show', $group)->with('success', 'Group updated successfully');
+        return redirect()->route('groups.show', $group)->with('success', 'Группа была успешно обновлена');
     }
 }
