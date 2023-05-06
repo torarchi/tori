@@ -54,6 +54,16 @@
             margin-bottom: 10px;
         }
 
+        .status2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
         .status p {
             margin: 0;
             margin-bottom: 10px;
@@ -68,42 +78,53 @@
             max-width: 100%;
             height: auto;
         }
-        /* Set a max-width for the container to control the image size */
+
         .image-container {
             max-width: 250px;
         }
 
     </style>
+
     <h1 style="color: dodgerblue">{{ $group->name }}</h1>
-
-    <div class="image-container">
-        <img src="{{ $group->image }}" alt="group image">
-    </div>
-    <h5>Участники: <i style="color: indigo">{{ $group->users->count() }}</i> </h5>
-
-    @if ($group->creator_id == auth()->id())
-        <div class="status-form">
-            <form action="{{ route('group_statuses.stores', $group) }}" method="POST">
-                @csrf
-                <textarea name="body" placeholder="Напишите что-то..." required></textarea>
-                <button type="submit">Опубликовать</button>
-            </form>
+    <div class="group-content">
+        <div class="image-container">
+            <img src="{{ $group->image }}" alt="group image" style="border-radius: 25px">
         </div>
-    @endif
+        <h5>Участники: <i style="color: indigo">{{ $group->users->count() }}</i></h5>
+        @if ($group->creator_id == auth()->id())
+            <div class="status-form">
+                <form action="{{ route('group_statuses.stores', $group) }}" method="POST">
+                    @csrf
+                    <textarea name="body" placeholder="Напишите что-то..." required style="resize: none"></textarea>
+                    <button type="submit">Опубликовать</button>
+                </form>
+            </div>
+        @endif
+    </div>
+
 
     <div class="statuses">
         <h2>Посты</h2>
         @if ($statuses->count() > 0)
             @foreach ($statuses as $status)
-                <div class="status">
-                    <p class="mb-2" style="word-wrap: break-word;">{{ $status->body }}</p>
+                <div class="container status">
+                    <div class="status2 d-flex">
+                        <div class="first">
+                            <p class="mb-2" style="word-wrap: break-word;">{{ $status->body }}</p>
+                        </div>
+                    </div>
+                    <div class="second d-flex justify-content-end align-items-center">
+                        <ul style="color: dodgerblue">
+                            <li>{{ $status->created_at->diffForHumans() }}</li>
+                        </ul>
+                    </div>
                 </div>
             @endforeach
             <div class="d-flex justify-content-center">
                 {{ $statuses->links("pagination::bootstrap-4") }}
             </div>
         @else
-            <p>Нет статусов.</p>
+            <p>Нет постов.</p>
         @endif
 
     </div>

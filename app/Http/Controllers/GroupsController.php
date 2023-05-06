@@ -13,7 +13,7 @@ class GroupsController extends Controller
 {
     public function index()
     {
-        $groups = Group::paginate(10);
+        $groups = Group::withCount('users')->orderByDesc('users_count')->paginate(10);
 
         return view('groups.index', compact('groups'));
     }
@@ -25,16 +25,26 @@ class GroupsController extends Controller
             'image' => 'required|url',
         ]);
 
+        $user = auth()->user();
+        $existingGroup = $user->groups()->first();
+        $groups = auth()->user()->groups;
+
+        if ($existingGroup) {
+            return redirect()->back()->with('info', 'У вас уже есть группа');
+        }
+
         $group = new Group;
         $group->name = $request->name;
         $group->image = $request->image;
-        $group->creator_id = auth()->id();
+        $group->creator_id = $user->id;
         $group->save();
 
-        $group->users()->attach(auth()->id());
+        $group->users()->attach($user);
+
 
         return redirect()->route('groups.index');
     }
+
 
 
     public function stores(Request $request, Group $group)

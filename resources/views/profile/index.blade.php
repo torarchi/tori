@@ -68,44 +68,34 @@
             </div>
             <div class="col-lg-4">
                 <div class="row">
-                    <div class="col-md-4 d-flex ">
-                        <h5 class="mb-3">Друзья</h5>
+                    <div class="col-lg-4">
+                        <h5>Поиск</h5>
                     </div>
-                    <div class="d-flex">
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="item-container">
-                                <span
-                                    class=" fw-bold fs-5 fs-md-4 fs-lg-3 text-start">{{ number_format($user->friends()->count()) }}</span>
+                    <div class="col-md-6 col-lg-12">
+                        <form class="d-flex justify-content-center align-items-center mx-auto" role="search"
+                              action="{{ route('search-results') }}">
+                            <div class="input-group">
+                                <label class="visually-hidden" for="search">Search:</label>
+                                <input class="form-control rounded" id="search" type="text" name="query"
+                                       placeholder="..." aria-label="Search">
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-flex">
-                        <h5 class="mb-3">Посты</h5>
-                    </div>
-                    <div class="d-flex">
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="item-container">
-                                <span
-                                    class="fw-bold fs-5 fs-md-4 fs-lg-3 text-start">{{ $totalStatusesCount }}</span>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 @if(Auth::user()->id == $user->id)
                     <div class="row mt-2">
-                        <div class="col-lg-4">
-                            <h5>Поиск</h5>
+                        <div class="col-md-4 d-flex ">
+                            <h5 class="mb-3">Друзья</h5>
                         </div>
-                        <div class="col-md-6 col-lg-12">
-                            <form class="d-flex justify-content-center align-items-center mx-auto" role="search"
-                                  action="{{ route('search-results') }}">
-                                <div class="input-group">
-                                    <label class="visually-hidden" for="search">Search:</label>
-                                    <input class="form-control rounded" id="search" type="text" name="query"
-                                           placeholder="..." aria-label="Search">
+                        <div class="d-flex">
+                            <div class="d-flex justify-content-start mb-4">
+                                <div class="item-container">
+                                <span
+                                    class=" fw-bold fs-5 fs-md-4 fs-lg-3 text-start">{{ number_format($user->friends()->count()) }}</span>
                                 </div>
-                            </form>
+                            </div>
                         </div>
+
                     </div>
             </div>
             @else
